@@ -20,6 +20,13 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build and run tests
+      - name: Build, test and package JAR
         working-directory: Demo_Practice
-        run: mvn clean test
+        run: mvn clean package
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-practice-jar
+          path: Demo_Practice/target/*.jar
+
